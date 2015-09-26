@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevDataProd Shiny Application</title>
+  <meta charset="utf-8">
+  <meta name="description" content="DevDataProd Shiny Application">
+  <meta name="author" content="Datarch">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>DevDataProd Shiny Application</h1>
+    <h2>Reproducible Pitch Presentation</h2>
+    <p>Datarch<br/>Developing Data Product Course Participant</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Shiny Application and Reproducible Pitch</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This presentation is created in scope of the Developing Data Product Course Project in <a href="https://www.coursera.org/course/devdataprod">Coursera</a> to provide a quick reproducible presentation on the created shiny application, also including some R expressions.</p>
+
+<p>The <strong>DevDataProd</strong> Shiny Application is available on <a href="https://datarched.shinyapps.io/DevDataProd">shinyapps.io</a>, the application R codes (ui.R and server.R) are published on <a href="https://github.com/Datarch/DevDataProd">GitHub</a>.</p>
+
+<p>The application calculates the Body Composition using a statistical model published by:</p>
+
+<p>Paul Deurenberg, Jan A. Weststrate and Jaap C. Seidell (1991). Body mass index as a measure of body fatness: age- and sex-specific prediction formulas. British Journal of Nutrition, 65, pp 105-114. doi:10.1079/BJN19910073.</p>
+
+<p>The abstract available <a href="http://dx.doi.org/10.1079/BJN19910073">here</a>.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Body mass index as a measure of body fatness</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The relationship between densitometrically-determined body fat percentage (BF%) and BMI, taking age and sex (males =1, females = 0) into account, was analysed on the collected data.</p>
+
+<p>The created statistical model based on a data set contains 1229 subjects, 521 males and 708 females, with a wide range in body mass index (BMI; 13.9-40.9 kg/m2), and an age range of 7-83 years, body composition was determined by densitometry and anthropometry.</p>
+
+<p>For children aged 15 years and younger, the relationship differed from that in adults, due to the height-related increase in BMI in children.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>How to use the DevDataProd Shiny Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>First the input data need to be entered or selected:</p>
+
+<ul>
+<li>Weight in kilogram</li>
+<li>Height in meter</li>
+<li>Age in years</li>
+<li>Sex: Male or Female</li>
+</ul>
+
+<p>Based on the input data, after pushing Submit button the application:</p>
+
+<ul>
+<li>calculates the body mass index (BMI)</li>
+<li>classify body fatness (underweight / normal / overweight / obese)</li>
+<li>calculates the body fat persentage</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Simulation Experiment</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># BMI and BF functions are used for calculation
+BMI &lt;- function(weight, height) round(weight / height^2, 2)
+BF &lt;- function(weight, height, sex, age) {
+        if (sex == &quot;Male&quot;) s &lt;- 1
+        else s &lt;-0
+        if (age &gt; 15) round(1.2 * (weight / height^2) + 0.23 * age - 10.8 * s - 5.4, 2)
+        else round(1.51 * (weight / height^2) - 0.70 * age - 3.6 * s + 1.4, 2)
+        }
+# Calculate BMI and BF%:
+BMI(62, 1.65); BF(62, 1.65, &quot;Female&quot;, 38)
+</code></pre>
+
+<pre><code>## [1] 22.77
+</code></pre>
+
+<pre><code>## [1] 30.67
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Shiny Application and Reproducible Pitch'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Body mass index as a measure of body fatness'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How to use the DevDataProd Shiny Application'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Simulation Experiment'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
